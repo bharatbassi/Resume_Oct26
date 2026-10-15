@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Bharat Bassi — Live Now</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--card:#161616;--y:#f8f32b;--text:#fff;--mute:#9a9a9a;--line:#262626;--live:#ff2d2d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+.d{font-family:Oswald,Impact,'Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-weight:700}
+.screen{position:fixed;inset:0;background:#000;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .6s,visibility .6s}
+.screen.off{opacity:0;visibility:hidden;pointer-events:none}
+.wm{font-size:clamp(60px,18vw,150px);color:var(--y);margin:0;line-height:1;position:relative;overflow:hidden;animation:pop 1.4s cubic-bezier(.2,.8,.2,1) both}
+.wm::after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-40%;background:linear-gradient(100deg,transparent,#fff9,transparent);animation:sweep 1.4s .9s ease forwards}
+@keyframes pop{from{opacity:0;transform:scale(.7)}}
+@keyframes sweep{to{left:120%}}
+.sub{color:var(--mute);letter-spacing:.35em;font-size:11px;margin-top:14px;opacity:0;animation:fi 1s 1s forwards}
+@keyframes fi{to{opacity:1}}
+.skip{position:absolute;bottom:calc(24px + env(safe-area-inset-bottom,0px));background:none;border:1px solid var(--line);color:var(--mute);padding:8px 16px;border-radius:999px;cursor:pointer}
+#who h2{font-size:clamp(30px,7vw,48px);margin:0 0 24px}
+.pf{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.pb{width:150px;background:var(--card);border:2px solid var(--line);border-radius:12px;color:#fff;padding:18px 10px;cursor:pointer;font:inherit;transition:.25s}
+.pb:hover,.pb:focus-visible{border-color:var(--y);transform:translateY(-4px);outline:0}
+.pb i{display:block;font-style:normal;font-size:36px;margin-bottom:8px}
+.pb small{display:block;color:var(--mute);font-size:11px;margin-top:4px}
+header.top{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:26px;padding:calc(12px + env(safe-area-inset-top,0px)) 4% 12px;background:linear-gradient(#000e,#0000);transition:.3s}
+header.top.s{background:#0a0a0af5;border-bottom:1px solid var(--line)}
+.logo{color:var(--y);font-size:26px;text-decoration:none}
+.tabs{display:flex;gap:22px;flex:1}
+.tabs a{color:var(--mute);text-decoration:none;font-size:14px;padding:6px 0;border-bottom:3px solid transparent}
+.tabs a:hover,.tabs a.on{color:#fff;border-color:var(--y)}
+.av{height:36px;padding:0 14px 0 4px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:#fff;display:flex;align-items:center;gap:8px;font:600 12px Inter,sans-serif;cursor:pointer;transition:.2s}
+.av b{width:28px;height:28px;border-radius:50%;background:var(--y);color:#000;display:grid;place-items:center;font-size:15px}
+.av:hover{border-color:var(--y)}
+@media(max-width:700px){.av span{display:none}.av{padding:0 4px}}
+@media(max-width:700px){.tabs{display:none}header.top{justify-content:space-between}}
+.bt{display:none;position:fixed;bottom:0;left:0;right:0;z-index:30;background:#0a0a0af8;border-top:1px solid var(--line);padding:8px 2% calc(8px + env(safe-area-inset-bottom,0px));justify-content:space-around}
+.bt a{color:var(--mute);text-decoration:none;font-size:10px;text-align:center;flex:1;letter-spacing:.06em}
+.bt a b{display:block;font-size:20px;font-weight:400}.bt a.on{color:var(--y)}
+@media(max-width:700px){.bt{display:flex}}
+@property --g{syntax:"<color>";inherits:true;initial-value:#3b3a05}
+.hero{--g:#3b3a05;position:relative;min-height:84vh;display:flex;align-items:flex-end;padding:0 4% 92px;overflow:hidden;background:radial-gradient(ellipse at 80% 20%,var(--g) 0%,#141404 40%,var(--bg) 78%);transition:--g 1s}
+.hero .pitch{position:absolute;right:-4%;top:10%;width:70%;height:60%;opacity:.5}
+.hero svg path.ln{stroke-dasharray:1400;stroke-dashoffset:1400;animation:dr 3s .4s ease forwards}
+.hero svg rect{transform-box:fill-box;transform-origin:bottom;animation:br 1.1s ease backwards}
+@keyframes dr{to{stroke-dashoffset:0}}@keyframes br{from{transform:scaleY(0)}}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,var(--bg))}
+.hc{position:relative;z-index:2;max-width:640px}
+@keyframes up{from{opacity:0;transform:translateY(28px)}}
+.live{display:inline-flex;align-items:center;gap:7px;background:var(--live);color:#fff;font-size:12px;padding:4px 10px;border-radius:3px}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#fff;animation:bl 1.2s infinite}
+@keyframes bl{50%{opacity:.2}}
+.hc h1{font-size:clamp(54px,13vw,116px);line-height:.92;margin:14px 0}
+.hc h1 em{font-style:normal;color:var(--y)}
+.hc p{color:#ddd;font-size:clamp(14px,2.4vw,18px);line-height:1.5;margin:0 0 20px}
+.btn{display:inline-block;border-radius:999px;padding:12px 28px;font:700 14px Oswald,sans-serif;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;margin:0 8px 8px 0;border:2px solid var(--y);text-decoration:none;transition:.2s}
+.btn.p{background:var(--y);color:#000}.btn.o{background:none;color:#fff;border-color:#fff6}
+.btn:hover{transform:scale(1.05)}
+.tick{position:relative;z-index:3;margin-top:-34px;display:flex;gap:10px;overflow-x:auto;padding:0 4%;scrollbar-width:none}
+.tick::-webkit-scrollbar{display:none}
+.sc{flex:0 0 auto;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.sc b{font-size:26px;color:var(--y)}.sc span{font-size:11px;color:var(--mute);max-width:90px;line-height:1.3}
+section.row{margin-top:30px}
+.rh{display:flex;justify-content:space-between;align-items:baseline;padding:0 4%}
+.rh h3{margin:0;font-size:22px}.rh span{color:var(--mute);font-size:12px}
+.rail{display:flex;gap:12px;overflow-x:auto;padding:14px 4% 10px;scroll-snap-type:x proximity;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.tile{flex:0 0 auto;width:min(76vw,320px);aspect-ratio:16/10;border-radius:10px;position:relative;overflow:hidden;cursor:pointer;scroll-snap-align:start;border:0;color:#fff;text-align:left;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font:inherit;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.tile:hover,.tile:focus-visible{transform:translateY(-6px) scale(1.04);box-shadow:0 0 0 2px var(--y),0 16px 36px #000a;outline:0}
+.tile::before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,#000c)}
+.tile>*{position:relative}
+.tile .em{position:absolute;top:10px;right:14px;font-size:58px;line-height:1}
+.badge{position:absolute!important;top:12px;left:12px;font-size:11px;padding:3px 8px;border-radius:3px;background:var(--y);color:#000}
+.badge.l{background:var(--live);color:#fff}
+.tile h4{margin:0;font-size:20px;line-height:1.1}.tile small{color:#ffffffcc;font-size:12px;margin-top:4px}
+.tile .pg{position:absolute;left:0;bottom:0;height:4px;background:var(--y);width:var(--p)}
+.stats{padding:14px 4% 0;max-width:820px}
+.st{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.st .n{color:var(--mute);font-size:18px}.st .bar{height:5px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden}
+.st .bar i{display:block;height:100%;background:var(--y);width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.in .st .bar i{width:var(--w)}
+.st .v{font-size:26px;color:var(--y)}.st p{margin:0;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:14px 4% 0}
+.chip{background:none;border:1px solid #fff4;border-radius:999px;padding:7px 15px;font-size:13px;color:#fff;transition:.2s;cursor:default}
+.chip:hover,.chip.k{background:var(--y);color:#000;border-color:var(--y)}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
+footer{margin:50px 4% 0;padding:34px 24px;border-radius:14px;background:var(--y);color:#000;text-align:center}
+footer h2{font-size:clamp(32px,8vw,56px);margin:0 0 8px;line-height:1}
+footer a.btn{background:#000;color:var(--y);border-color:#000}
+footer a{color:#000}
+#modal{position:fixed;inset:0;z-index:50;background:#000b;display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;transition:.3s}
+#modal.on{opacity:1;visibility:visible}
+.mb{background:var(--card);border-radius:18px 18px 0 0;width:min(720px,100%);max-height:86vh;overflow:auto;transform:translateY(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);padding-bottom:env(safe-area-inset-bottom,0px)}
+#modal.on .mb{transform:none}
+@media(min-width:701px){#modal{align-items:center;padding:20px}.mb{border-radius:16px}}
+.mh{height:190px;position:relative;display:flex;align-items:flex-end;padding:20px}
+.mh::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,var(--card))}
+.mh h2{position:relative;z-index:1;margin:0;font-size:clamp(30px,7vw,44px);line-height:1}
+.x{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:#000a;color:#fff;font-size:16px;cursor:pointer}
+.mc{padding:2px 22px 26px}.mc .tg{color:var(--y);font-size:13px;margin:4px 0}
+.mc ul{padding-left:18px;color:#ddd;line-height:1.6;font-size:14px}.mc li{margin-bottom:8px}
+.hire{background:var(--y);color:#000;border-radius:999px;padding:9px 20px;font-size:13px;letter-spacing:.06em;text-decoration:none;transition:.2s;white-space:nowrap}
+.hire:hover{transform:scale(1.06);box-shadow:0 6px 20px #f8f32b44}
+.hc>*{animation:up .8s both}.hc>*:nth-child(2){animation-delay:.1s}.hc>*:nth-child(3){animation-delay:.2s}.hc>*:nth-child(4){animation-delay:.3s}.hc>*:nth-child(5){animation-delay:.4s}
+.hc h1.sm{font-size:clamp(40px,8.5vw,84px)}
+.segs{position:absolute;z-index:3;left:4%;right:4%;bottom:46px;display:flex;gap:6px;max-width:660px}
+.segs button{flex:1;height:22px;background:none;border:0;cursor:pointer;position:relative;padding:0}
+.segs button::before{content:"";position:absolute;left:0;right:0;top:9px;height:3px;background:#fff3;border-radius:2px}
+.segs i{position:absolute;left:0;top:9px;height:3px;background:var(--y);border-radius:2px;width:0}
+.segs .on i{animation:fill 6s linear forwards}.segs .dn i{width:100%}
+@keyframes fill{to{width:100%}}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:14px 4% 0;scrollbar-width:none}
+.cat{border:1px solid #fff4;border-radius:999px;padding:8px 16px;background:none;color:#fff;cursor:pointer;white-space:nowrap;font-size:13px;transition:.2s}
+.cat.on{background:var(--y);color:#000;border-color:var(--y)}
+.chips{min-height:70px;padding-top:16px}
+.chip{background:var(--card);border-color:var(--line);animation:up .4s both}
+.chip:hover{transform:translateY(-3px);background:var(--y);color:#000;border-color:var(--y)}
+#main{display:flex;flex-direction:column}#main>*{flex-shrink:0}
+.vtag{display:block;margin-top:2px;color:var(--mute);font-size:12px;letter-spacing:.04em}
+.pb{width:170px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="screen" id="intro"><h1 class="wm d">Bharat Bassi</h1><div class="sub">SOCIAL INTELLIGENCE · LIVE</div><button class="skip" onclick="toWho()">Skip</button></div>
+<div class="screen off" id="who"><h2 class="d">Choose your view</h2><div class="pf" id="pf"></div></div>
+
+<header class="top" id="hd"><a class="logo d" href="#top">Bharat</a>
+<nav class="tabs d"><a href="#top" class="on">Home</a><a href="#seasons">Career</a><a href="#projects">Projects</a><a href="#impact">Stats</a><a href="#skills">Skills</a></nav><a class="hire d" href="#contact">Hire me</a><button class="av" onclick="toWho()" title="Switch view"><b id="ai">🙂</b><span id="an">Choose view</span></button></header>
+<nav class="bt d"><a href="#top" class="on"><b>⌂</b>Home</a><a href="#seasons"><b>▶</b>Career</a><a href="#projects"><b>★</b>Projects</a><a href="#impact"><b>▤</b>Stats</a><a href="#contact"><b>✉</b>Hire</a></nav>
+
+<header class="hero" id="top">
+<svg class="pitch" viewBox="0 0 600 300" fill="none" aria-hidden="true"><g fill="#f8f32b" opacity=".3"><rect x="40" y="170" width="30" height="110" style="animation-delay:.2s"/><rect x="100" y="130" width="30" height="150" style="animation-delay:.35s"/><rect x="160" y="150" width="30" height="130" style="animation-delay:.5s"/><rect x="220" y="90" width="30" height="190" style="animation-delay:.65s"/><rect x="280" y="110" width="30" height="170" style="animation-delay:.8s"/><rect x="340" y="60" width="30" height="220" style="animation-delay:.95s"/><rect x="400" y="80" width="30" height="200" style="animation-delay:1.1s"/><rect x="460" y="30" width="30" height="250" style="animation-delay:1.25s"/></g><path class="ln" d="M20 220 C90 180 120 200 180 150 S280 110 340 90 440 60 580 20" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+<div class="hc" id="hc"></div>
+<div class="segs" id="segs"></div>
+</header>
+
+<main id="main"><div class="tick d" id="tick"></div>
+
+<section class="row rv" id="seasons"><div class="rh"><h3 class="d">Career · Live & Replays</h3><span>Swipe →</span></div><div class="rail" id="r1"></div></section>
+<section class="row rv" id="projects"><div class="rh"><h3 class="d">Match Highlights · Projects</h3><span>Swipe →</span></div><div class="rail" id="r2"></div></section>
+<section class="row rv" id="impact"><div class="rh"><h3 class="d">Stats Centre · Season Leaders</h3></div><div class="stats" id="stats"></div></section>
+<section class="row rv" id="skills"><div class="rh"><h3 class="d">The Squad · Skills</h3><span>Pick a position</span></div><div class="cats" id="cats"></div><div class="chips" id="chips"></div></section>
+</main>
+<footer class="rv" id="contact"><h2 class="d">Sign Bharat for your next season</h2><p><a href="mailto:bharatbassi8@gmail.com">bharatbassi8@gmail.com</a> · +91 70533 20627</p><a class="btn d" href="mailto:bharatbassi8@gmail.com">Get in touch</a><a class="btn d" href="https://linkedin.com/in/bharatbassi">LinkedIn</a></footer>
+
+<div id="modal" onclick="if(event.target===this)closeM()"><div class="mb" role="dialog" aria-modal="true"><div class="mh" id="mh"><button class="x" onclick="closeM()" aria-label="Close">✕</button><h2 class="d" id="mt"></h2></div><div class="mc"><div class="tg" id="mg"></div><ul id="ml"></ul></div></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const I={
+s4:{t:"DAZN",g:"Social Media Analyst · Jul 2025 – Now · Hyderabad",c:"linear-gradient(135deg,#8a8500,#1a1a00)",e:"⚽",b:"LIVE",p:"100%",l:["Oversee brand intelligence across 10+ markets with Sprout Social and Zendesk; weekly reports to VP-level stakeholders.","Architecting an end-to-end ORM strategy: escalation matrices, response playbooks, tone-of-voice frameworks.","Root cause analysis lifted Service Level by 35% — Star of the Month.","Coordinate analytics for a 17-member social team: SLA, FRT, CSAT, engagement."]},
+s3:{t:"Interactive Avenues",g:"Senior ORM Executive · IPG Mediabrands · 2023 – 2025",c:"linear-gradient(135deg,#1d4ed8,#0a1230)",e:"🚗",b:"REPLAY",p:"75%",l:["Lead ORM and listening analyst for MG Motors with weekly brand health reports.","Crisis ORM for CEAT and Apollo Tyres with hourly sentiment recovery tracking.","Konnect Insights monitoring for 5+ brands: +15 sentiment points in 3 months.","Same-day reporting (from 3 days) via Excel and Looker Studio; +22% engagement."]},
+s2:{t:"The Social Booth",g:"ORM Executive · Step1 Advertising · 2021 – 2023",c:"linear-gradient(135deg,#0f8f64,#04281d)",e:"✈️",b:"REPLAY",p:"50%",l:["Listening and ORM across 21+ channels for Delhi International Airport.","First Response Time under 7 minutes — 2x faster than the 15-minute benchmark.","Power BI sentiment dashboards used in daily reviews and C-suite decks.","Passenger insight analysis improved issue-resolution accuracy by 20%."]},
+s1:{t:"Catalyst Web Trendz",g:"Social Media Executive · 2019 – 2021",c:"linear-gradient(135deg,#c2410c,#3a1303)",e:"📣",b:"REPLAY",p:"25%",l:["Engagement reporting across YouTube, Facebook, Instagram and Twitter for 8+ brands.","Content recommendations drove +25% monthly reach in 6 months.","Weekly benchmarks improved content consistency by 35%."]},
+p0:{t:"Global Sentiment Dashboard",g:"Power BI · 10+ markets",c:"linear-gradient(135deg,#9a8f00,#14140a)",e:"📊",b:"FEATURED",l:["Sentiment trends, share of voice, word clouds, buzz trends and AI-powered recommendations.","Used weekly by regional and global leadership for brand strategy reviews."]},
+p1:{t:"AI-Assisted VBA Automation",g:"DAZN · Reporting pipeline",c:"linear-gradient(135deg,#7c3aed,#1c0b40)",e:"⚙️",b:"HIGHLIGHT",l:["End-to-end macro suite for weekly listening reports.","Prep time cut from 3–4 hours to 30–40 minutes (85%+)."]},
+p2:{t:"Star of the Month: RCA",g:"DAZN · 2025",c:"linear-gradient(135deg,#d97706,#3d2400)",e:"🏆",b:"AWARD",l:["Root cause analysis on Daily Production Reports exposed queue-routing and agent-allocation bottlenecks.","Result: 35% Service Level improvement."]},
+p3:{t:"Stock Market Analytics",g:"Python + Tableau",c:"linear-gradient(135deg,#0e7490,#05262e)",e:"📈",b:"HIGHLIGHT",l:["NSE/BSE sector trends, moving averages and investment signals.","Interactive filtering for exploration."]},
+p4:{t:"IPL Insights Dashboard",g:"SQL + Power BI",c:"linear-gradient(135deg,#2563eb,#09163f)",e:"🏏",b:"HIGHLIGHT",l:["10 seasons of IPL data analysed.","Win-rate patterns by venue, toss outcome and team composition."]}};
+const st=[["85%","Faster reporting prep",85],["35%","Service Level lift",70],["+25%","Monthly reach",60],["+22%","Engagement uplift",55],["+20%","Resolution accuracy",50],["+15","Sentiment points",45],["<7m","First response time",90],["30%","Less reporting effort",40]];
+const tick=[["85%","faster reporting"],["35%","service level lift"],["<7m","first response"],["10+","markets covered"],["21+","channels managed"]];
+const V=[
+{n:"Recruiter",e:"🔍",d:"Fast scan: key numbers, tools and career timeline",g:"#3b3a05",pitch:"Social Media Analyst & ORM Specialist. 6+ years, 10+ markets, measurable results you can scan in a minute.",order:["impact","skills","seasons","projects"],slides:["p0","s3","p1","p2"],proj:["p0","p2","p1","p3","p4"],cat:0,cta:["Skim key stats","#impact"],feat:"p0",fl:"Featured project",hire:"Hire me",foot:"Sign Bharat for your next season",note:"Recruiter view · numbers, then tools, then career"},
+{n:"Hiring Manager",e:"💼",d:"Impact: dashboards, automation and business results",g:"#13306b",pitch:"I build dashboards and playbooks that move sentiment and ops KPIs, then automate the grind so teams focus on decisions.",order:["projects","seasons","impact","skills"],slides:["p2","p1","p0","s3"],proj:["p2","p1","p0","p3","p4"],cat:1,cta:["See the impact","#projects"],feat:"p2",fl:"Biggest win",hire:"Let's talk",foot:"Let's build your next result together",note:"Hiring manager view · wins first, then the story behind them"},
+{n:"Fellow Analyst",e:"🤝",d:"Craft: the stack, methods and technical projects",g:"#0d3b2f",pitch:"Let's talk listening stacks, root cause analysis and how to turn raw sentiment into strategy. Here is how I work.",order:["skills","projects","impact","seasons"],slides:["p0","p1","s3","p2"],proj:["p3","p4","p0","p1","p2"],cat:2,cta:["Explore the toolkit","#skills"],feat:"p1",fl:"How I automate",hire:"Connect",foot:"Let's swap notes on listening and analytics",note:"Analyst view · tools and methods first"}];
+let vw=-1;const DEF={g:"#3b3a05",cta:["Watch career","#seasons"],feat:"p0",fl:"Featured project",note:""};
+const tile=k=>{const i=I[k];return `<button class="tile" style="background:${i.c}" onclick="openM('${k}')"><span class="badge d ${i.b=='LIVE'?'l':''}">${i.b}</span><span class="em">${i.e}</span><h4 class="d">${i.t}</h4><small>${i.g}</small>${i.p?`<span class="pg" style="--p:${i.p}"></span>`:''}</button>`};
+$("#r1").innerHTML=["s4","s3","s2","s1"].map(tile).join("");
+$("#r2").innerHTML=["p0","p1","p2","p3","p4"].map(tile).join("");
+$("#stats").innerHTML=st.map((s,n)=>`<div class="st"><span class="n d">${n+1}</span><div><p>${s[1]}</p><div class="bar"><i style="--w:${s[2]}%"></i></div></div><span class="v d">${s[0]}</span></div>`).join("");
+$("#tick").innerHTML=tick.map(t=>`<div class="sc"><b>${t[0]}</b><span>${t[1]}</span></div>`).join("");
+$("#pf").innerHTML=V.map((v,i)=>`<button class="pb d" onclick="pick(${i})"><i>${v.e}</i>${v.n}<small style="font-family:Inter;text-transform:none">${v.d}</small></button>`).join("");
+const SK={"Listening & ORM":"Sprout Social,Zendesk,Konnect Insights,Talkwalker,Crisis Communication,Reputation Management,Audience Intelligence,Digital PR","Analytics & BI":"Power BI,Tableau,Looker Studio,DAX,Data Modelling,Dashboard Development,Descriptive Analytics,Prescriptive Analytics","Code & Data":"Python,Pandas,NumPy,SQL,Window Functions,VBA Automation,Power Query,Pivot Tables","Social & Growth":"Meta Business Suite,Google Ads,Hootsuite,YouTube Studio,X Analytics,Content Strategy,Community Management,Influencer Monitoring","Education":"MBA Business Analytics · LJMU (pursuing),Adv. General Management · IMT Ghaziabad,BA Mass Communication · GJUST,Google Data Analytics,Power BI for Data Analysts,HubSpot Social Media Marketing"};
+function cat(i){document.querySelectorAll(".cat").forEach((b,j)=>b.classList.toggle("on",i==j));$("#chips").innerHTML=Object.values(SK)[i].split(",").map((x,n)=>`<span class="chip" style="animation-delay:${n*45}ms">${x}</span>`).join("")}
+let SL=[{g:"#3b3a05"},
+{k:"p0",l:"Featured · Power BI",t:"Global Sentiment <em>Dashboard</em>",d:"10+ markets. One live view of sentiment, share of voice and buzz, used by leadership every week.",g:"#3b3a05"},
+{k:"s3",l:"Crisis ORM",t:"Containing the <em>Storm</em>",d:"Rapid response for CEAT and Apollo Tyres, with sentiment tracked hour by hour.",g:"#4a0d14"},
+{k:"p1",l:"Automation",t:"3 Hours to <em>30 Minutes</em>",d:"An AI-assisted VBA suite that cut weekly report prep by 85%.",g:"#24104f"},
+{k:"p2",l:"Star of the Month",t:"Root Cause. <em>Real Fix.</em>",d:"Root cause analysis on daily production reports lifted Service Level by 35%.",g:"#4a2c00"}];
+const SL0=SL.slice();let hi=0,ht,pitchTxt="Social Media Analyst & ORM Specialist. I turn millions of conversations into brand intelligence leadership acts on.";
+function hero(i){hi=i;const h=SL[i],v=V[vw]||DEF;$(".hero").style.setProperty("--g",h.g);
+$("#hc").innerHTML=h.k?`<span class="live d">${h.l}</span><h1 class="d sm">${h.t}</h1><p>${h.d}</p><button class="btn p" onclick="openM('${h.k}')">▶ Watch replay</button><a class="btn o" href="#seasons">Watch career</a>`:`<span class="live d">Live now · 6+ years</span><h1 class="d">Bharat <em>Bassi</em></h1><p>${pitchTxt}</p><a class="btn p" href="${v.cta[1]}">▶ ${v.cta[0]}</a><button class="btn o" onclick="openM('${v.feat}')">${v.fl}</button>${v.note?`<small class="vtag">${v.note}</small>`:""}`;
+$("#segs").innerHTML=SL.map((_,j)=>`<button class="${j==i?'on':j<i?'dn':''}" onclick="hero(${j})" aria-label="Slide ${j+1}"><i></i></button>`).join("");
+clearTimeout(ht);ht=setTimeout(()=>hero((hi+1)%SL.length),6000)}
+hero(0);
+$("#cats").innerHTML=Object.keys(SK).map((k,i)=>`<button class="cat d ${i?'':'on'}" onclick="cat(${i})">${k}</button>`).join("");
+cat(0);
+function applyView(i){vw=i;const v=V[i];pitchTxt=v.pitch;
+SL=[{g:v.g}].concat(v.slides.map(k=>SL0.find(x=>x.k==k)));
+$("#ai").textContent=v.e;$("#an").textContent=v.n;document.querySelector(".hire").textContent=v.hire;
+document.querySelector("#contact h2").textContent=v.foot;
+v.order.forEach((id,n)=>{document.getElementById(id).style.order=n+1});
+document.querySelectorAll(".tabs a,.bt a").forEach(a=>{const h=a.getAttribute("href").slice(1);a.style.order=h=="top"?0:h=="contact"?99:v.order.indexOf(h)+1});
+$("#r2").innerHTML=v.proj.map(k=>tile(k)).join("");
+cat(v.cat);hero(0);scrollTo({top:0,behavior:"smooth"})}
+function openM(k){const i=I[k];$("#mt").textContent=i.t;$("#mg").textContent=i.g;$("#ml").innerHTML=i.l.map(x=>`<li>${x}</li>`).join("");$("#mh").style.background=i.c;$("#modal").classList.add("on")}
+function closeM(){$("#modal").classList.remove("on")}
+addEventListener("keydown",e=>{if(e.key==="Escape")closeM()});
+function toWho(){clearTimeout(T);$("#intro").classList.add("off");$("#who").classList.remove("off")}
+function pick(i){$("#who").classList.add("off");applyView(i)}
+const T=setTimeout(toWho,3000);
+addEventListener("scroll",()=>$("#hd").classList.toggle("s",scrollY>50),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+function prep(b){const m=b.textContent.match(/^(\D*)(\d+)(.*)$/);if(!m)return;b.dataset.p=m[1];b.dataset.n=m[2];b.dataset.s=m[3];b.textContent=m[1]+"0"+m[3]}
+const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const b=e.target,n=+b.dataset.n,t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1400);b.textContent=b.dataset.p+Math.round(n*(1-Math.pow(1-p,3)))+b.dataset.s;if(p<1)requestAnimationFrame(f)})(t0);co.unobserve(b)}}));
+document.querySelectorAll(".sc b,.st .v").forEach(b=>{prep(b);if(b.dataset.n)co.observe(b)});
+</script>
+</body>
+</html>
