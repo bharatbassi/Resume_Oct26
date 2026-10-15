@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>Bharat Bassi — Live Now</title>
+<title>Bharat Bassi — Social Media Analyst</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0a0a;--card:#161616;--y:#f8f32b;--text:#fff;--mute:#9a9a9a;--line:#262626;--live:#ff2d2d;
@@ -121,6 +121,7 @@ footer a{color:#000}
 .chip{background:var(--card);border-color:var(--line);animation:up .4s both}
 .chip:hover{transform:translateY(-3px);background:var(--y);color:#000;border-color:var(--y)}
 .rs{border:1px solid #fff5;color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;letter-spacing:.06em;text-decoration:none;white-space:nowrap;transition:.2s}.rs:hover{border-color:var(--y);color:var(--y)}@media(max-width:700px){.rs span{display:none}.rs{padding:8px 12px}}
+.eyebrow{display:inline-block;color:var(--y);font-size:13px;letter-spacing:.2em}
 #main{display:flex;flex-direction:column}#main>*{flex-shrink:0}
 .vtag{display:block;margin-top:2px;color:var(--mute);font-size:12px;letter-spacing:.04em}
 .pb{width:170px}
@@ -128,7 +129,7 @@ footer a{color:#000}
 </style>
 </head>
 <body>
-<div class="screen" id="intro"><h1 class="wm d">Bharat Bassi</h1><div class="sub">SOCIAL INTELLIGENCE · LIVE</div><button class="skip" onclick="toWho()">Skip</button></div>
+<div class="screen" id="intro"><h1 class="wm d">Bharat Bassi</h1><div class="sub">SOCIAL INTELLIGENCE</div><button class="skip" onclick="toWho()">Skip</button></div>
 <div class="screen off" id="who"><h2 class="d">Choose your view</h2><div class="pf" id="pf"></div></div>
 
 <header class="top" id="hd"><a class="logo d" href="#top">Bharat</a>
@@ -188,7 +189,7 @@ let SL=[{g:"#3b3a05"},
 {k:"c0",l:"AI · Certified",t:"Prompt Engineering <em>Certified</em>",d:"Completed upGrad's Advanced Prompt Engineering with ChatGPT, adding to the AI-assisted automation already running in my reporting.",g:"#2a1a5a"}];
 const SL0=SL.slice();let hi=0,ht,pitchTxt="Social Media Analyst & ORM Specialist. I turn millions of conversations into brand intelligence leadership acts on.";
 function hero(i){hi=i;const h=SL[i],v=V[vw]||DEF;$(".hero").style.setProperty("--g",h.g);
-$("#hc").innerHTML=h.k?`<span class="live d">${h.l}</span><h1 class="d sm">${h.t}</h1><p>${h.d}</p><button class="btn p" onclick="openM('${h.k}')">▶ Watch replay</button><a class="btn o" href="#seasons">Watch career</a>`:`<span class="live d">Live now · 6+ years</span><h1 class="d">Bharat <em>Bassi</em></h1><p>${pitchTxt}</p><a class="btn p" href="${v.cta[1]}">▶ ${v.cta[0]}</a><button class="btn o" onclick="openM('${v.feat}')">${v.fl}</button><a class="btn o" href="Bharat_Bassi_Resume.pdf" download="Bharat_Bassi_Resume.pdf">⬇ Resume (PDF)</a>${v.note?`<small class="vtag">${v.note}</small>`:""}`;
+$("#hc").innerHTML=h.k?`<span class="eyebrow d">${h.l}</span><h1 class="d sm">${h.t}</h1><p>${h.d}</p><button class="btn p" onclick="openM('${h.k}')">▶ Watch replay</button><a class="btn o" href="#seasons">Watch career</a>`:`<span class="eyebrow d">6+ years · Social Intelligence</span><h1 class="d">Bharat <em>Bassi</em></h1><p>${pitchTxt}</p><a class="btn p" href="${v.cta[1]}">▶ ${v.cta[0]}</a><button class="btn o" onclick="openM('${v.feat}')">${v.fl}</button><a class="btn o" href="Bharat_Bassi_Resume.pdf" download="Bharat_Bassi_Resume.pdf">⬇ Resume (PDF)</a>${v.note?`<small class="vtag">${v.note}</small>`:""}`;
 $("#segs").innerHTML=SL.map((_,j)=>`<button class="${j==i?'on':j<i?'dn':''}" onclick="hero(${j})" aria-label="Slide ${j+1}"><i></i></button>`).join("");
 clearTimeout(ht);ht=setTimeout(()=>hero((hi+1)%SL.length),6000)}
 hero(0);
